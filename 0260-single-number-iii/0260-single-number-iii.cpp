@@ -1,16 +1,26 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        vector<int> v;
-        map<int,int> mp;
-        for(int i=0;i<nums.size();i++){
-            mp[nums[i]]++;
-        }
-        for (auto & i :mp){
-            if (i.second==1){
-                v.push_back(i.first);
+        sort(nums.begin(),nums.end());
+        int a=0;
+        int c=0;
+        for (int i=0;i<nums.size()-1;i++){
+            if (nums[i]==nums[i+1]){
+                i++;
             }
+            else if (c==1){
+                return {a,nums[i]};
+            }
+            else{
+                a=nums[i];
+                c=1;
+            }
+            // cout << nums[i] << endl;
         }
-        return v;
+        // for (int i=0;i<nums.size();i++) cout << nums[i] << endl;
+        int n=nums.size();
+        // cout << a << endl;
+        // if (a==0) return {nums[a],nums[n-1]};
+        return {a,nums[n-1]};
     }
 };
