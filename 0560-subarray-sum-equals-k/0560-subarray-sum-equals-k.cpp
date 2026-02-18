@@ -10,10 +10,10 @@ public:
             if (mp.find(sum-k)!=mp.end()){
                 c+=mp[sum-k];
             }
-            mp[sum-k]++;
+            mp[sum]++;
             
         }
-        return 0;
+        return c;
         
     }
 };
