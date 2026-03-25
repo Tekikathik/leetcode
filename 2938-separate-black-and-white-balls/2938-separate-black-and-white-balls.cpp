@@ -1,14 +1,15 @@
 class Solution {
 public:
     long long minimumSteps(string s) {
-        long long l=0;
-        long long c=0;
-        for (int i=0;i<s.size();i++){
-            if (s[i]=='0'){
-                c+=(i-l);
-                l++;
+        int j=s.size()-1;
+        int c=0;
+        long long sum=0;
+        for(int i=s.size()-1;i>=0;i--){
+            if (s[i]=='1'){
+                sum+=((j-i)-c);
+                c++;
             }
         }
-        return c;
+        return sum;
     }
 };
