@@ -1,19 +1,20 @@
 class Solution {
 public:
-    void subb(vector<int>&nums,int i,vector<int>&v,vector<vector<int>>&subs){
-        if (i==nums.size()){
-            subs.push_back(v);
-            return ;
+    void recursion(vector<int>&v ,int i ,vector<int>& output,vector<vector<int>>& arr){
+        if (i==v.size()){
+            arr.push_back(output);
+            return;
         }
-        v.push_back(nums[i]);
-        subb(nums,i+1,v,subs);
-        v.pop_back();
-        subb(nums,i+1,v,subs);
+        output.push_back(v[i]);
+        recursion(v,i+1,output,arr);
+        output.pop_back();
+        recursion(v,i+1,output,arr);
     }
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> subs;
-        vector<int> sub;
-        subb(nums,0,sub,subs);
-        return subs;
+        vector<vector<int>> result;
+        vector<int> output;
+        recursion(nums,0,output,result);
+        return result;
+        
     }
 };
