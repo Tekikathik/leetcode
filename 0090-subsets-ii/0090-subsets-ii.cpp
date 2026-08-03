@@ -1,25 +1,22 @@
 class Solution {
 public:
-    map<vector<int>,int> mp;
-    void subb(vector<int>&nums,int i,vector<int>&v,vector<vector<int>>&subs){
-        if (i==nums.size()){
-            if (mp.find(v)==mp.end()){
-                mp[v]++;
-                subs.push_back(v);
-            }
-            return ;
+    void recursion(vector<int>& nums, vector<vector<int>>& ans,vector<int>& arr, int start) {
+        if (start==nums.size());
+        ans.push_back(arr);
+        for (int i = start; i < nums.size(); i++) {
+            if (i > start && nums[i] == nums[i - 1])
+                continue;
+            arr.push_back(nums[i]);
+            recursion(nums, ans, arr, i + 1);
+            arr.pop_back();
         }
-        v.push_back(nums[i]);
-        subb(nums,i+1,v,subs);
-        v.pop_back();
-        subb(nums,i+1,v,subs);
     }
+
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        vector<vector<int>> subs;
-        vector<int> sub;
-        sort(nums.begin(),nums.end());
-        subb(nums,0,sub,subs);
-        return subs;
-        
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        vector<int> arr;
+        recursion(nums, ans, arr, 0);
+        return ans;
     }
 };
