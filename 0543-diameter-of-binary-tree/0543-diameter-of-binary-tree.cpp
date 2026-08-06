@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int ma = 0;
+
+    int solve(TreeNode* root) {
+        if (root == NULL) return 0;
+
+        int left = solve(root->left);
+        int right = solve(root->right);
+
+        ma = max(ma, left + right);
+
+        return max(left, right) + 1;
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        solve(root);
+        return ma;
+    }
+};
